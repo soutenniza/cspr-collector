@@ -1,0 +1,8 @@
+---
+applications:
+- name: cspr-collector
+  memory: 128M
+  instances: 1
+  command: cspr-collector
+  env:
+    GO_INSTALL_PACKAGE_SPEC: cmd/cspr-collector

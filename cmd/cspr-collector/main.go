@@ -3,11 +3,12 @@ package main
 import (
 	"context"
 	"flag"
-	cspr "github.com/mhilker/cspr-collector"
 	"log"
 	"net/http"
 	"os"
 	"os/signal"
+
+	cspr "github.com/soutenniza/cspr-collector"
 )
 
 var (
