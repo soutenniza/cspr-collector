@@ -2,9 +2,10 @@ package csprcollector
 
 import (
 	"context"
-	"github.com/olivere/elastic/v7"
 	"log"
 	"net/http"
+
+	"github.com/olivere/elastic/v7"
 )
 
 type ElasticsearchOutput struct {
@@ -14,7 +15,7 @@ type ElasticsearchOutput struct {
 }
 
 func (o *ElasticsearchOutput) Write(data []CSPRequest) {
-	client, err := elastic.NewClient(elastic.SetHttpClient(o.Client), elastic.SetURL(o.Url), elastic.SetSniff(false))
+	client, err := elastic.NewClient(elastic.SetHttpClient(o.Client), elastic.SetURL(o.Url), elastic.SetSniff(false), elastic.SetHealthcheck(false))
 	if err != nil {
 		log.Print(err.Error())
 		return

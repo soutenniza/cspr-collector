@@ -3,6 +3,8 @@ applications:
 - name: cspr-collector
   memory: 128M
   instances: 1
-  command: cspr-collector
-  env:
-    GO_INSTALL_PACKAGE_SPEC: cmd/cspr-collector
+  command: bin/cspr-collector -host :$PORT -output-stdout 
+    GOPACKAGENAME: cspr-collector
+    GO111MODULE: "on"
+    GO_INSTALL_PACKAGE_SPEC: github.com/soutenniza/cspr-collector/cmd/cspr-collector
+    
