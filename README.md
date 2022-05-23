@@ -8,27 +8,39 @@ Content Security Policy Report Collector.
 $ ./cspr-collector --help
 Usage of ./build/cspr-collector:
   -host string
-        address to listen for http requests on (default "127.0.0.1:8080")
+    	address to listen for http requests on (default "127.0.0.1:8080")
   -n int
-        the number of workers to start (default 4)
+    	the number of workers to start (default 4)
+  -output-aws-es
+    	enable aws elasticsearch output
+  -output-aws-es-access-key string
+    	access key for elasticsearch
+  -output-aws-es-region string
+    	secret key for elasticsearch (default "us-west-1")
+  -output-aws-es-secret-key string
+    	secret key for elasticsearch
+  -output-cf-aws-es
+    	enable aws elasticsearch to use cloud foundry creds
+  -output-cf-aws-es-name string
+    	service name for cf aws elasticsearch
   -output-es
-        enable elasticsearch output
+    	enable elasticsearch output
   -output-es-ca-file string
-        ca file for elasticsearch
+    	ca file for elasticsearch
   -output-es-cert-file string
-        cert file for elasticsearch
+    	cert file for elasticsearch
   -output-es-host string
-        elasticsearch host to send the csp violations to (default "http://localhost:9200/")
+    	elasticsearch host to send the csp violations to (default "http://localhost:9200/")
   -output-es-index string
-        elasticsearch index to save the csp violations in (default "cspr-violations")
+    	elasticsearch index to save the csp violations in (default "cspr-violations")
   -output-es-key-file string
-        key file for elasticsearch
+    	key file for elasticsearch
   -output-http
-        enable http output
+    	enable http output
   -output-http-host string
-        http host to send the csp violations to (default "http://localhost:80/")
+    	http host to send the csp violations to (default "http://localhost:80/")
   -output-stdout
-        enable stdout output
+    	enable stdout output
 ```
 
 ## Build and run
@@ -52,6 +64,12 @@ docker run -p 8080:8080 mhilker/cspr-collector:latest -host 0.0.0.0:8080 -output
 ```bash
 docker-compose -f cmd/cspr-collector/docker-compose.yml build
 docker-compose -f cmd/cspr-collector/docker-compose.yml up
+```
+
+### Via CF Push
+
+```bash
+cf push -f manifest.yml
 ```
 
 ## Example request

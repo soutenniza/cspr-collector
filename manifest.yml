@@ -3,7 +3,10 @@ applications:
 - name: cspr-collector
   memory: 128M
   instances: 1
-  command: bin/cspr-collector -host :$PORT -output-stdout 
+  buildpacks:
+  - go_buildpack
+  command: bin/cspr-collector -host :$PORT -output-stdout -output-cf-aws-es -output-cf-aws-es-name cspr-collector-aws-es -output-aws-es-region us-gov-west-1
+  env:
     GOPACKAGENAME: cspr-collector
     GO111MODULE: "on"
     GO_INSTALL_PACKAGE_SPEC: github.com/soutenniza/cspr-collector/cmd/cspr-collector
